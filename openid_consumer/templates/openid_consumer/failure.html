@@ -1,0 +1,18 @@
+{% extends 'openid_consumer/openid_consumer_base.html' %}
+{% load i18n %}
+
+
+{% block title %}
+
+{{ block.super }} - {% trans "OpenID failed" %}
+
+{% endblock %}
+
+{% block main %}
+
+<h1>{% trans "OpenID failed" %}:</h1>
+
+<p>{{ message|escape }}</p>
+
+
+{% endblock %}

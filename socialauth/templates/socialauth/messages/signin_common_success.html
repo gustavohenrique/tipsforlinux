@@ -1,0 +1,18 @@
+{% extends 'base_site.html' %}
+
+
+{% block main %}
+
+<div style="text-align:center">
+    <img src="{{ MEDIA_URL }}css/images/happy-penguin.jpg" width="150" height="142" alt="Happy penguin" border="0">
+</div>
+
+<div class="success">
+    <h1>Congratulations!</h1>
+    <h2>Your account has been created and a confirmation e-mail has been sent to you.</h2>
+    <h3>After confirmation, you will can add and comment tips in
+        <a href="{% url tip-mytips %}" title="My Tips" class="common">My Tips</a> page.
+    </h3>
+</div>
+
+{% endblock %}

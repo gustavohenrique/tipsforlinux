@@ -1,0 +1,26 @@
+
+{% load comments %}
+
+<div id="respond">
+    <h3>Leave a Reply</h3>
+    <div class="cancel-comment-replay"></div>
+
+    <form id="commentform" action="{% comment_form_target %}" method="post">
+        {% csrf_token %}
+        <p>{{ form.name }} {{ form.name.label_tag }} (required)</p> {{ form.name.errors }}
+        <p>{{ form.email }} {{ form.email.label_tag }} (required)</p> {{ form.email.errors }}
+        <p>{{ form.url }} {{ form.url.label_tag }}</p> {{ form.url.errors }}
+        <p>{{ form.comment }}</p> {{ form.name.errors }}
+        <p>{{ form.honeypot }} {{ form.honeypot.label_tag }}</p> {{ form.honeypot.errors }}
+      
+        <input type="submit" name="submit" class="button" value="Comment"/>
+        
+        {{ form.content_type }} {{ form.object_pk }} {{ form.timestamp }} {{ form.security_hash }}
+        
+        <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+
+      
+    </form>
+</div>
+
+

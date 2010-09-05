@@ -1,0 +1,35 @@
+{% extends 'base_site.html' %}
+
+
+{% block main %}
+
+
+<div id="profile" class="auth">
+    
+    <h2>Edit your profile</h2>
+
+    {% if messages %}
+        <div class="formsuccess"><ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul></div>
+    {% endif %}
+    
+    {% if edit_form.errors %}
+        <div class="formerrors">
+            {{ edit_form.errors }}
+        </div>
+    {% endif %}
+    
+    <form action="." method="post" id="profileform" class="authform">     
+        {% csrf_token %}
+        <p>If you define a password, you will can login via common auth system too.</p>
+         
+        {{ edit_form.as_p }} 
+        
+        <br><input type="submit" name="btSave" id="btSave" value="Save Profile" class="button">
+    </form>
+
+</div>
+{% endblock %}

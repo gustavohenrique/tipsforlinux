@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Tips For Linux</title>
+<meta name="description" content="Tips for GNU/Linux avaiable from anywhere" />
+<meta name="keywords" content="linux, gnu, shell, ubuntu, debian, slackare, samba, squid, ssh, network, wireless" />
+<link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}css/style.css" />
+<style type="text/css">
+.recentcomments a {
+    display: inline !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+</style>
+
+<!-- Scripts -->
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/tabbox.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/lib/jquery.bgiframe.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/lib/jquery.ajaxQueue.js"></script>
+
+<!-- autocomplete tags -->
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery.autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}js/jquery/jquery.autocomplete.css" />
+
+{% load truncate %}
+
+{% block extra_head %}{% endblock %}
+
+</head>
+
+<body>
+
+<div id="main">
+    
+    <div id="main-content">
+
+        <div id="header-wrapper">
+            <div id="header-wrap">
+            
+                <div id="header">
+                    <img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/>{{ active_menu }}
+                </div>
+        
+                <div id="nav-wrapper">
+                    <ul class="nav">
+                        <li><a href="{% url tip-latest %}"{% ifequal active_menu 'home' %}class="active"{% endifequal %}><span>Home</span></a></li>
+                        
+                        <li><a href="{% url tip-mytips %}"{% ifequal active_menu 'mytips' %}class="active"{% endifequal %}><span>My Tips</span></a></li>
+                        
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url socialauth_social_logout %}"><span>Logout</span></a></li>
+                        {% else %}
+                            <li><a href="{% url socialauth_login_page %}"{% ifequal active_menu 'login' %}class="active"{% endifequal %}><span>Login</span></a></li>
+                        {% endif %}
+                        
+                        <!-- <li><a href="#"><span>About</span></a></li> -->
+                        <li><a href="{% url contact_form %}"{% ifequal active_menu 'contact' %}class="active"{% endifequal %} title="Contact us"><span>Contact</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- header-wrapper -->
+        
+        <div class="clearfix"></div>
+        
+        <div id="content-wrapper"">
+            <!-- main-wrapper -->
+            <div id="main-wrapper">
+            
+                {% block main %} {% endblock %}
+                
+            </div>
+            <!-- main-wrapper -->
+            
+            <!-- sidebar-wrapper -->
+            <div id="sidebar-wrapper">
+                
+                {% if user.is_authenticated %}
+                <div class="side-content">
+                    <div class="auth" style="width:250px;">    
+                        <h2>My account</h2>
+                        <div style="padding:5px;font-size:0.8em;line-height:18px;">
+                            You are logged as <b>{{ request.user }}</b>.<br>
+                            <a href="{% url socialauth_editprofile %}" class="common" title="Edit profile">Edit profile</a> or 
+                            <a href="{% url socialauth_social_logout %}" class="common" title="Logout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="side-content">
+                    <form method="get" id="searchform" action="{% url tip-simple-search %}">
+                        <fieldset id="search">
+                            <input type="text" value="" onclick="this.value=''" name="text" id="s" />
+                            <input name="" type="image" src="{{ MEDIA_URL }}css/images/search_go.png" value="Search" id="searchsubmit" class="btn" />
+                            <div class="clearfix"></div>
+                        </fieldset>
+                    </form>
+                    <!-- search -->
+                </div>
+                
+                <div class="side-content">
+                    <div class="sbox">
+                        <a href="{% url tip-feed %}" title="Subscribe our RSS">
+                            <img src="{{ MEDIA_URL }}css/images/rss.png" alt="Subscribe our RSS" />
+                        </a>
+                    </div>
+                    
+                    <div class="sbox">
+                        <a href="http://www.delicious.com/save" onclick="window.open('http://www.delicious.com/save?v=5&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;" title="Bookmark us on Delicious">
+                            <img src="{{ MEDIA_URL }}css/images/delicious.png" alt="Bookmark us on Delicious"/>
+                        </a>
+                    </div>
+                    
+                    <div class="sbox">
+                        <a href="http://twitter.com/tipsforlinux" title="Follow us on Twitter">
+                            <img src="{{ MEDIA_URL }}css/images/twitter.png" alt="Follow us on Twitter" />
+                        </a>
+                    </div>
+                    <div class="sbox">
+                        <a href="http://www.diigo.com" onclick="var s=document.createElement('script');s.type='text/javascript';s.src='http://www.diigo.com/javascripts/webtoolbar/diigolet_b_h_b.js';document.body.appendChild(s);return false;" title="Bookmark us on Diigo">
+                            <img src="{{ MEDIA_URL }}css/images/diigo.png" alt="Diigo"/>
+                        </a>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+         
+                <div class="side-content">
+                    <ul class="tabs">
+                        <li><a href="#tab1">Tags</a></li>
+                        <li><a href="#tab2">Top 20 Tips</a></li>
+                    </ul>
+                    
+                    <div class="tab_container">
+                        <div id="tab1" class="tab_content">
+                            <div id="tab1-1">
+                                <ul>
+                                    {% if not tag_list_left %}
+                                        <li>No tags</li>
+                                    {% endif %}
+                                    
+                                    {% for tag in tag_list_left %}
+                                        <li><a title="{{ tag.name }}" href="{% url tips-by-tag tag.slug %}">{{ tag|wordwrap:3 }}</a></li>
+                                    {% endfor %}
+                                </ul>
+        
+                            </div>
+                            <div id="tab1-2">
+                                <ul>
+                                    {% for tag in tag_list_right %}
+                                        <li><a title="{{ tag.name }}" href="{% url tips-by-tag tag.slug %}">{{ tag }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="tab2" class="tab_content">
+                            <div id="tab2-1" style="border:0">
+                                <ul>
+                                    {% if not top_tips %}
+                                        <li>No tips</li>
+                                    {% endif %}
+                                    
+                                    {% for top_tip in top_tips %}
+                                        <li><a title="{{ top_tip.title }}" href="{{ top_tip.get_absolute_url }}">{{ top_tip|truncate:35 }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="clear"></div> 
+                </div>
+                
+            </div>
+            
+            <div class="clear" style="height:50px;"></div>
+        </div>
+        
+        <!-- content-wrapper -->
+        <div class="clear"></div>
+        
+    <!-- end main-content -->
+    </div>
+    <div style="padding:20px;"></div>
+
+    <div id="footer-wrapper">
+        <div id="footer">
+            <a class="left" href="http://creativecommons.org/licenses/by/3.0/" title="Licensed under Creative Commons License">
+                <img src="{{ MEDIA_URL }}css/images/80x15.png" />
+            </a>
+            <a class="right" href="http://mediatemple.net/" title="Template created by MediaTemple"><img src="{{ MEDIA_URL }}css/images/mediatemple.png" alt="mediatemplate.net" /></a>
+        </div>  
+    </div>
+
+</div>
+<!-- end main -->
+
+</body>
+</html>

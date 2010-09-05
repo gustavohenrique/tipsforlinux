@@ -1,0 +1,93 @@
+{% extends 'base_site.html' %}
+
+
+{% block main %}
+
+<div id="login">
+
+    <p>Sign-in or Create New Account via these openid providers:<br><br></p>
+    
+    <div id="twitter">
+      <a href="{% url socialauth_twitter_login %}" id="twitter_login_link" class="openid_large_btn twitter" title="Twitter"></a>
+    </div>
+
+    <div id="yahoo">
+      <a href="{% url socialauth_yahoo_login %}" id="yahoo_login_link" class="openid_large_btn yahoo" title="Yahoo"></a>
+    </div>
+
+    <div id="google">
+      <a href="{% url socialauth_google_login %}" id="google_login_link" class="openid_large_btn google" title="Google"></a>
+    </div>
+
+    <!--
+    <div id="openid">
+      <a href="{% url socialauth_openid_login %}" id="openid_login_link" class="openid_large_btn openid"></a>
+    </div>
+    
+    <div id="facebook">
+      <fb:login-button onlogin="facebook_onlogin();"></fb:login-button>
+    </div>
+    
+    <script type="text/javascript">  FB.init("{{ fb_api_key }}", "{% url socialauth_xd_receiver %}"); </script>
+    -->
+    
+    <div class="clear"><br></div>
+    
+    <p>Or via common auth system:<br><br></p>
+    
+    <div id="authentication" class="auth">
+        <h2>Login</h2>
+        
+        {% if auth_form.errors %}
+            <div class="formerrors">
+                {{ auth_form.errors }}
+            </div>
+        {% endif %}
+        
+        <form action="{% url socialauth_login_common %}" method="post" id="auth" class="authform">
+            {% csrf_token %}
+            
+            {{ auth_form.as_p }}
+            
+            <br><input type="submit" name="submit" id="btLogin" value="Login" class="button">
+        </form>
+    </div>
+    
+    <br>
+    
+    <div id="register" class="auth">
+        <h2>Sign-in</h2>
+
+        {% if signin_form.errors %}
+            <div class="formerrors">
+                {{ signin_form.errors }}
+            </div>
+        {% endif %}
+
+        <form action="{% url socialauth_signin_common %}" method="post" id="signin" class="authform">
+            {% csrf_token %}
+                        
+            <p>{{ signin_form.username.label_tag }} {{ signin_form.username }}</p>
+            <p>{{ signin_form.password1.label_tag }} {{ signin_form.password1 }}</p>
+            <p><label>Confirmation</label> {{ signin_form.password2 }}</p>
+            <p><label>E-mail</label> {{ signin_form.email }}</p>
+        
+            <br><input type="submit" name="submit" id="btSignin" value="Sign-in" class="button">
+        </form>
+        
+    </div>
+    
+    
+        
+  
+    <noscript>
+      <p>
+        OpenID is service that allows you to log-on to many different websites using a single indentity. Find out 
+        <a href="http://openid.net/what/">more about OpenID</a> and 
+        <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.
+      </p>
+    </noscript>
+    
+</div>
+
+{% endblock %}

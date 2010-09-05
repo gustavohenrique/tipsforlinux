@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Tips For Linux</title>
+<meta name='description' content='Tips for GNU/Linux avaiable from anywhere' />
+<meta name='keywords' content='linux, gnu, shell, ubuntu, debian, slackare, samba, squid, ssh, network, wireless' />
+<link rel="stylesheet" type="text/css" media="all"  href="css/style.css" />
+<style type="text/css">
+.recentcomments a {
+    display: inline !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+</style>
+
+<!-- Scripts -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/tabbox.js"></script>
+</head>
+
+<body>
+
+<div id="header-wrapper">
+    <div id="header-wrap">
+    
+        <div id="header">
+            <img src="css/images/logo.png"/>
+        </div>
+
+        <div id="nav-wrapper">
+            <ul class="nav">
+                <li><a href="#" class="active"><span>Home</span></a></li>
+                <li><a href="#"><span>Login</span></a></li>
+                <li><a href="#"><span>About</span></a></li>
+                <li><a href="#/contact" title="Contact us"><span>Contact</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- header-wrapper -->
+
+<div class="clearfix"></div>
+
+<div id="content-wrapper">
+    <!-- main-wrapper -->
+    <div id="main-wrapper">
+    
+        <div class="post">
+            <h1 class="post-title">instalar o Grub na mbr</h1>
+            <h2 class="post-header-line1">Monday, July 26, 2010 | Posted by Gustavo | labels: mbr</h2>
+            <div class="post-body">
+                Para instalar o Grub na mbr, use o comando grub-install /dev/?dispositivo?
+                exemplo: grub-install /dev/hda coloca o grub na mbr do primeiro hd ide (master da primária)
+
+                Em seguida rode o comando grub (isso vale também se você deu boot num disco com grub !).
+
+                Ao rodar o comando grub aparece um prompt grub.
+
+                grub> root (hd0,0) # o /boot estava /dev/hda1
+                grub> install /grub/stage1 d (hd0) /grub/stage2 p /grub/menu.lst
+
+                quando não boota e entra no grub
+
+                grub> root (hdX,Y)
+                grub> kernel = /vmlinuz root=/dev/hda3
+                grub> initrd = /initrd
+
+                Para criar um disco de boot do Linux bem rapido, use os comandos abaixo:
+                # dd if=/path/do/seu/kernel of=/dev/fd0
+                # rdev /dev/fd0 /dev/hdXY
+
+                Onde X é o seu HD(hda, hdb, sda, sdb, etc) e Y é a partição em que se encontra o diretório / (raiz)
+            </div>
+            <div class="post-footer reply">
+                <a href="#" class="button">keep reading...</a>
+            </div>
+        </div>
+        
+        <div class="post">
+            <h1 class="post-title">Dicas úteis para usar o tar ou relacionado a ele.</h1>
+            <h2 class="post-header-line1">Monday, July 26, 2010 | Posted by Gustavo | labels: mbr</h2>
+            <div class="post-body">
+                juntar e zipar<br/>
+                $ tar -czvf arquivo.tgz *.txt<br/>
+                para abrir<br/>
+                $ tar -xzvf arquivo.tar.gz<br/>
+                $ tar -xjvf arquivo.tar.bz2<br/>
+                apagando vários arquivos !! Se abrir um tgz no lugar errado.<br/>
+                $ tar tfz nomefile.tar.gz | xargs rm<br/>
+                ou se possuir um arquivo com os nomes dos arquivos a serem apagados.<br/>
+                $ cat arquivos| xargs rm<br/>
+                ou ainda ...<br/>
+                $ rm `find . -name \*.tmp`<br/>
+                Compactar um diretório e dividí-lo em vários disquetes.<br/>
+                $ tar czvM -f /dev/fd0H1440 diretório<br/>
+                usar o tar excluindo um arquivo<br/>
+                $ tar --exclude /root/sis1/sis1.tgz -czvf sis1.tgz /<br/>
+                usar o tar só em uma partição local como barra /<br/>
+                $ tar -zcvlf barra.tgz /<br/>
+                Compactar e enviar via ssh<br/>
+                $ tar -czf - diretorio/ |ssh usuario@servidor 'cat >arquivo.tgz'
+            </div>
+            <div class="post-footer reply">
+                <a href="#" class="button">keep reading...</a>
+            </div>
+        </div>
+    
+        <div class="clear"></div>
+        
+        <ol style="display:none" class="wp-paginate">
+            <li>
+                <span class="title"></span>
+            </li>
+            <li>
+                <span class="page current">1</span>
+            </li>
+            <li>
+                <a class="page" title="2" href="#">2</a>
+            </li>
+            <li>
+                <a class="page" title="3" href="#">3</a>
+            </li>
+            <li>
+                <span class="gap">...</span>
+            </li>
+            <li>
+                <a class="page" title="20" href="#">20</a>
+            </li>
+            <li>
+                <a class="next" href="#">Next</a>
+            </li>
+        </ol>
+    </div>
+    <!-- main-wrapper -->
+    
+    <!-- sidebar-wrapper -->
+    <div id="sidebar-wrapper">
+        
+        
+        <div class="side-content">
+            <form method="get" id="searchform" action="#">
+                <fieldset id="search">
+                    <input type="text" value="" onclick="this.value='';" name="s" id="s" />
+                    <input name="" type="image" src="css/images/search_go.png" value="" id="searchsubmit" class="btn" />
+                    <div class="clearfix"></div>
+                </fieldset>
+            </form>
+            <!-- search -->
+        </div>
+        
+        <div class="side-content">
+            <div class="sbox"><a href="http://delicious.com/save?url=#" title="Bookmark us on Delicious"><img src="css/images/rss.png" alt="Subscribe our RSS" /></a></div>
+            <div class="sbox"><a href="http://delicious.com/save?url=#" title="Bookmark us on Delicious"><img src="css/images/delicious.png" alt="Bookmark us on Delicious"/></a></div>
+            <div class="sbox"><a href="http://twitter.com/BThemes" title="Follow us on Twitter"><img src="css/images/twitter.png" alt="Follow us on Twitter" /></a></div>
+            <div class="sbox"><a href="http://www.google.com/buzz/post?url=#" title="Google Buzz"><img src="css/images/gbuzz.png" alt="Google Buzz"/></a></div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="side-content">
+            <ul class="tabs">
+                <li><a href="#tab1">Tags</a></li>
+                <li><a href="#tab2">Top 10 Tips</a></li>
+                <li><a href="#tab3">Top 10 Users</a></li>
+            </ul>
+            
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+                    <div id="tab1-1">
+                        <ul>
+                            <li><a title="" href="">ssh</a></li>
+                            <li><a title="" href="">grub</a></li>
+                            <li><a title="" href="">samba</a></li>
+                            <li><a title="" href="">squid</a></li>
+                            <li><a title="" href="">ubuntu</a></li>
+                        </ul>
+
+                    </div>
+                    <div id="tab1-2">
+                        <ul>
+                            <li><a title="" href="">debian</a></li>
+                            <li><a title="" href="">kernel</a></li>
+                            <li><a title="" href="">linus</a></li>
+                            <li><a title="" href="">smb</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="tab2" class="tab_content">
+                    <div id="tab2-1">
+                        <ul>
+                            <li><a title="" href="">ssh</a></li>
+                            <li><a title="" href="">grub</a></li>
+                            <li><a title="" href="">samba</a></li>
+                            <li><a title="" href="">squid</a></li>
+                            <li><a title="" href="">ubuntu</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tab2-2">
+                        <ul>
+                            <li><a title="" href="">debian</a></li>
+                            <li><a title="" href="">kernel</a></li>
+                            <li><a title="" href="">linus</a></li>
+                            <li><a title="" href="">smb</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="tab3" class="tab_content">
+                    <div id="tab3-1">
+                        <ul>
+                            <li><a title="" href="">Gustavo</a></li>
+                            <li><a title="" href="">User1</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                            <li><a title="" href="">User2</a></li>
+                        </ul>
+
+                    </div>
+                </div>                
+            </div>
+            <div class="clear"></div> 
+        </div>
+        
+    </div>
+    
+    <div class="clear"></div> 
+</div>
+
+<!-- content-wrapper -->
+<div class="clear"></div>
+
+<div id="footer-wrapper">
+    <div id="footer">
+        <a class="left" href="http://creativecommons.org/licenses/by/3.0/" title="Licensed under Creative Commons License">
+            <img src="css/images/80x15.png" />
+        </a>
+        <a class="right" href="http://mediatemple.net/" title="Hosted by MediaTemple"><img src="css/images/mediatemple.png" /></a>
+    </div>  
+</div>
+
+</body>
+</html>

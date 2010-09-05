@@ -1,0 +1,2 @@
+TipsForLinux is a simple website that contains tips for linux.
+It has been created using django with django-tagging, django-socialauth, django-contact-form, django-paggination and comments (native) apps.

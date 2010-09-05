@@ -1,0 +1,34 @@
+{% extends "base_site.html" %}
+
+{% block main %}
+
+{% load truncate %}
+
+{% if not tips %}
+    <p>Sorry, no tips on this moment.</p>
+{% endif %}
+
+{% load pagination_tags %}
+{% autopaginate tips 10 %}
+
+{% for tip in tips %}
+<div class="post"> 
+   {% include 'post_title.html' %}
+   <div class="post-body">
+        {{ tip.body|striptags|linebreaksbr|truncate:100|safe }}
+    </div>
+    
+    {% if tip.body|striptags|truncate:100|length > 100 %}
+        <div class="post-footer reply">
+            <a href="{{ tip.get_absolute_url }}" class="button">keep reading...</a>
+        </div>
+    {% endif %}
+</div>
+{% endfor %}
+
+{% paginate %}
+
+<div class="clear"></div>
+
+
+{% endblock %}

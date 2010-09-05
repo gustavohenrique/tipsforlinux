@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/50/trunk/pagination
+END
+middleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/49/trunk/pagination/middleware.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/2/trunk/pagination/__init__.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/49/trunk/pagination/tests.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/2/trunk/pagination/models.py
+END
+paginator.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/48/trunk/pagination/paginator.py
+END

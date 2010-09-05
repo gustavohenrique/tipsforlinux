@@ -1,0 +1,8 @@
+{% csrf_token %} 
+
+{{ form.id }}
+<label class="title" for="id_title" accesskey="t">Title</label> {{ form.title }} <span class="errormessage">{{ form.title.errors }}</span>
+<label class="title" for="id_body" accesskey="b">Tip</label> {{ form.body }} <span class="errormessage">{{ form.body.errors }}</span>
+<label class="title" for="id_tags" accesskey="d">Tags</label> {{ form.tags }} <span class="errormessage">{{ form.tags.errors }}</span>
+<label class="title" ></label>{{ form.is_public }}<label class="desc" for="id_is_public"> Is public?</label>
+<label class="title" ></label>{{ form.enable_comments }}<label class="desc" for="id_enable_comments"> Enable comments?</label>

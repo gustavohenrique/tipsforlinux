@@ -1,0 +1,72 @@
+{% extends 'base_site.html' %}
+
+{% load comments %}
+{% load gravatar %}
+
+{% block main %}
+<div class="post">
+    {% include 'post_title.html' %}
+    <div class="post-body">{{ tip.body|striptags|linebreaksbr|safe }}</div>
+</div>
+
+
+
+
+      <div style="width:640px">
+          <span class="post-button">
+              {% if bookmark %}
+                 It was <b>bookmarked</b>.
+              {% else %}
+                  <a href="{% url tip-bookmark tip.id %}?action=add" class="common">Add</a> or 
+              {% endif %}
+              
+              <a href="{% url tip-bookmark tip.id %}?action=delete" class="common">Delete</a> on bookmark.
+         <br>
+              {% if rating %}
+                  You rating as <b>{{ rating.get_rating }}</b>.
+                  Rating as
+                  {% if rating.useful %}
+                      <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
+                  {% else %}
+                      <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a>.
+                  {% endif %}
+              {% else %}
+                  Rating as 
+                  <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a> or 
+                  <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
+              {% endif %}
+          </span>
+       </div>
+
+        <div class="clear"></div><br>
+ 
+
+<div id="comment-box">
+    
+    {% get_comment_count for tip as comment_count %}
+    <h3>{{ comment_count }} comment{{ comment_count|pluralize }}</h3>
+    <ol class="commentlist">
+        {% get_comment_list for tip as comment_list %}
+        {% for comment in comment_list %}
+            <li class="comment even thread-even depth-{% cycle '1' '2' %}">
+                <div class="comment-author vcard">
+                    {% gravatar comment.user_email 48 %}
+                    <cite class="fn">
+                        <a class="url" href="{{ comment.url }}">{{ comment.name }}</a>
+                    </cite>
+                </div>
+                <div class="comment-meta commentmetadata">
+                    <span>{{ comment.submit_date|date:"F j, Y" }}</span>
+                </div>
+                <p>{{ comment.comment|linebreaks }}</p>
+                <div class="reply" style="display:none">
+                    <a class="comment-reply-link">Reply</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+
+    {% render_comment_form for tip %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+{% load pagination_tags %}
+{% autopaginate tips 10 %}
+{% autopaginate bookmarked_tips 10 %}
+
+<div class="tips">
+    <div class="info"><h1>My Tips</h1></div>
+
+    {% if tips %}
+        {% paginate %}
+        <table cellpadding="0" cellspacing="0" border="1">
+            <thead>
+                <td width="80">Posted in</td>
+                <td width="400">Title</td>
+                <td class="center">Hits</td>
+                <td class="center">Approved?</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </thead>
+            <tbody>
+            {% for tip in tips %}
+                <tr style="background:{% cycle '#ffffff' '#f8f8f8' %}">
+                    <td>{{ tip.pub_date }}</td>
+                    <td><a href="{{ tip.get_abosulte_url }}">{{ tip.title }}</a></td>
+                    <td class="center">{{ tip.hits }}</td>
+                    <td class="center" style="color:{% if tip.approved %}green{% else %}red{% endif %}">{{ tip.approved|yesno }}</td>
+                    <td><a href="{% url tip-edit tip.id %}" title="Edit"><div class="edit"></div><noscript>Edit</noscript></a></td>
+                    <td><a href="{% url tip-delete tip.id %}" title="Delete"><div class="delete"></div><noscript>Delete</noscript></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p style="font-size:0.8em">No tips.</p>
+    {% endif %}
+
+</div>
+
+<br><br>
+
+<div class="tips">
+    <div class="info"><h1>Bookmarked Tips</h1></div>
+
+    {% if bookmarked_tips %}
+        <table cellpadding="0" cellspacing="0" border="1">
+            <thead>
+                <td width="80">Posted in</td>
+                <td width="400">Title</td>
+                <td width="150" class="center">Author</td>
+                <td>&nbsp;</td>
+            </thead>
+            <tbody>
+            {% for b in bookmarked_tips %}
+                <tr style="background:{% cycle '#ffffff' '#f8f8f8' %}">
+                    <td>{{ b.tip.pub_date }}</td>
+                    <td><a href="{{ b.tip.get_abosulte_url }}">{{ b.tip.title }}</a></td>
+                    <td class="center">{{ b.tip.author }}</td>
+                    <td><a href="{% url tip-bookmark b.tip.id %}?action=delete" title="Delete"><div class="delete"></div><noscript>Delete</noscript></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% paginate %}
+        
+    {% else %}
+        <p style="font-size:0.8em">No bookmarked tips. You can't add on bookmark yourself tips.</p>
+    {% endif %}
+
+</div>
+
+<br><br>
+
+<div class="info">
+  <h1>New Tip</h1>
+  <div></div>
+</div>
+
+<form id="formTipAdd" name="formTipAdd" action="{% url tip-add %}" method="post" class="genericform">
+    {% include 'form.html' %}
+
+    <div>
+        <input type="submit" value="Add" class="button">
+    </div>
+
+</form>
+
+{% endblock %}
