@@ -1,2 +1,27 @@
-TipsForLinux is a simple website that contains tips for linux.
+What it does
+-----------------
+
+TipsForLinux is a simple website that allow users send a tips about linux, like a blog.
 It has been created using django with django-tagging, django-socialauth, django-contact-form, django-paggination and comments (native) apps.
+Users can use openid authentication system provided by twitter, google and yahoo, but is possible to use common authentication system too (based in django.contrib.auth).
+
+
+Implementation
+-----------------
+
+Download the sources and install the necessaries libs.
+
+Libs you need to install:
+
+1. pyfacebook (github.com/sciyoshi/pyfacebook/)
+2. hashlib (pip install hashlib)
+3. python-openid (github.com/openid/python-openid)
+4. yadis (pypi.python.org/pypi/python-yadis)
+5. python-oauth (oauth.googlecode.com/svn/code/python)
+6. simplejson (pypi.python.org/pypi/simplejson)
+
+
+Limitations
+-----------------
+
+I had a trouble to generate facebook key so I don't implemented authentication based on it.
