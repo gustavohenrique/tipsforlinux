@@ -13,12 +13,12 @@ ADMINS = (
 # Used by contact-form
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = os.path.join(PROJECT_ROOT_PATH, 'tipsforlinux.db')
-DATABASE_USER = 'root'
-DATABASE_PASSWORD = ''
-DATABASE_HOST = ''
-DATABASE_PORT = ''
+#DATABASE_ENGINE = 'sqlite3'
+#DATABASE_NAME = os.path.join(PROJECT_ROOT_PATH, 'tipsforlinux.db')
+#DATABASE_USER = ''
+#DATABASE_PASSWORD = ''
+#DATABASE_HOST = ''
+#DATABASE_PORT = ''
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH, 'media')
 
@@ -34,6 +34,7 @@ SECRET_KEY = 's-cf9xrjk@kzpe*)5k3%2vk@(+rankt6h4%+3*%k3+#p^sl5h*'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+    'django.template.loaders.app_directories.Loader'
 #     'django.template.loaders.eggs.load_template_source',
 )
 
@@ -69,6 +70,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.comments',
+    'django.contrib.sitemaps',
     'socialauth',
     'openid_consumer',
     'tagging',

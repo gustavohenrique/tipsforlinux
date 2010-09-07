@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from tips.sitemaps import LatestTipSitemap
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -15,6 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'^comments/', include('django.contrib.comments.urls')),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'tips':LatestTipSitemap}}),
 
     #(r'^$', 'socialauth.views.signin_complete'),
     (r'^$', 'tips.views.show_latest'),
