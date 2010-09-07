@@ -1,0 +1,5 @@
+test_base_url = "http://www.tipsforlinux.com"
+twitter_username = "gustavohenriq"
+twitter_password = ""
+myopenid_url = "http://socialauthtest2.myopenid.com/"
+myopenid_password = ""

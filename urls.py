@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'tips':LatestTipSitemap}}),
+    (r'^robots\.txt$', include('robots.urls')),
 
     #(r'^$', 'socialauth.views.signin_complete'),
     (r'^$', 'tips.views.show_latest'),

@@ -15,7 +15,7 @@ class TwitterTester(unittest.TestCase):
         #Test that a user is created after logging in via Twitter for the first time.
         initial_user_count = User.objects.count()
         sel.open("/accounts/login/")
-        sel.click("link=Login via twitter")
+	sel.click("id=twitter_login_link")
         sel.wait_for_page_to_load("30000")
         try:
             sel.click("link=Sign out")
@@ -35,7 +35,7 @@ class TwitterTester(unittest.TestCase):
         self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
         
-
+"""
 class OpenIdTester(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
@@ -67,7 +67,7 @@ class OpenIdTester(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
+"""
 
 
 if __name__ == "__main__":

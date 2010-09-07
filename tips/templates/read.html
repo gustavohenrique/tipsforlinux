@@ -9,37 +9,36 @@
     <div class="post-body">{{ tip.body|striptags|linebreaksbr|safe }}</div>
 </div>
 
+<div style="width:640px">
+    <span class="post-button">
+        {% if bookmark %}
+           It was <b>bookmarked</b>.
+        {% else %}
+            <a href="{% url tip-bookmark tip.id %}?action=add" class="common">Add</a> or 
+        {% endif %}
+        
+        <a href="{% url tip-bookmark tip.id %}?action=delete" class="common">Delete</a> on bookmark.
+  
+        <br/>
+        
+        {% if rating %}
+            You rating as <b>{{ rating.get_rating }}</b>.
+            Rating as
+            {% if rating.useful %}
+                <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
+            {% else %}
+                <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a>.
+            {% endif %}
+        {% else %}
+            Rating as 
+            <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a> or 
+            <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
+        {% endif %}
+    </span>
+</div>
 
+<div class="clear"></div><br/>
 
-
-      <div style="width:640px">
-          <span class="post-button">
-              {% if bookmark %}
-                 It was <b>bookmarked</b>.
-              {% else %}
-                  <a href="{% url tip-bookmark tip.id %}?action=add" class="common">Add</a> or 
-              {% endif %}
-              
-              <a href="{% url tip-bookmark tip.id %}?action=delete" class="common">Delete</a> on bookmark.
-         <br/>
-              {% if rating %}
-                  You rating as <b>{{ rating.get_rating }}</b>.
-                  Rating as
-                  {% if rating.useful %}
-                      <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
-                  {% else %}
-                      <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a>.
-                  {% endif %}
-              {% else %}
-                  Rating as 
-                  <a href="{% url tip-rate tip.id %}?score=up" class="common">useful</a> or 
-                  <a href="{% url tip-rate  tip.id %}?score=down" class="common">not useful</a>.
-              {% endif %}
-          </span>
-       </div>
-
-        <div class="clear"></div><br/>
- 
 
 <div id="comment-box">
     

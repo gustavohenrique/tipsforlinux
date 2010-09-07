@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.contrib.admin import site, ModelAdmin
 
+from django.contrib.sitemaps import ping_google
+
 from tips.models import Tip, Rating, Bookmark
 from tips.forms import TipForm
 
@@ -11,6 +13,11 @@ class TipAdmin(ModelAdmin):
     
     def approve(self, request, queryset):
         queryset.update(approved=True)
+        try:
+            ping_google()
+        except Exception:
+            pass
+        
     approve.short_description = 'Approve'
     
 site.register(Tip, TipAdmin)

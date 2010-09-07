@@ -34,7 +34,7 @@ SECRET_KEY = 's-cf9xrjk@kzpe*)5k3%2vk@(+rankt6h4%+3*%k3+#p^sl5h*'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-    'django.template.loaders.app_directories.Loader'
+    'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.load_template_source',
 )
 
@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.comments',
     'django.contrib.sitemaps',
+    'robots',
     'socialauth',
     'openid_consumer',
     'tagging',
@@ -90,15 +91,19 @@ LOGOUT_REDIRECT_URL = '/'
 MAIL_TO_RECEIVE_POSTS_UPDATES = ''
 #EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = '587'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
+#EMAIL_PORT = '587'
 DEFAULT_FROM_EMAIL = ''
+
 AKISMET_API_KEY = ''
-DEFAULT_FROM_EMAIL = ''
+
 TWITTER_CONSUMER_KEY = ''
 TWITTER_CONSUMER_SECRET = ''
+
 SITE_NAME = 'localhost'
+
+ROBOTS_SITEMAP_URL = '/sitemap.xml'
 
 # Imports according of hostname
 import socket
