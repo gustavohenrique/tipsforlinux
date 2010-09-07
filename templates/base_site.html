@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>Tips For Linux</title>
 <meta name="description" content="Tips for GNU/Linux avaiable from anywhere" />
-<meta name="keywords" content="linux, gnu, shell, ubuntu, debian, slackare, samba, squid, ssh, network, wireless" />
+<meta name="keywords" content="linux, shell, ubuntu, samba, squid, ssh, network, wireless, tcp" />
 <link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}css/style.css" />
 <style type="text/css">
 .recentcomments a {
@@ -40,7 +40,7 @@
             <div id="header-wrap">
             
                 <div id="header">
-                    <img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/>
+                    <a href="/" title="Home"><img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/></a>
                 </div>
         
                 <div id="nav-wrapper">
@@ -65,7 +65,7 @@
         
         <div class="clearfix"></div>
         
-        <div id="content-wrapper"">
+        <div id="content-wrapper">
             <!-- main-wrapper -->
             <div id="main-wrapper">
             
@@ -82,7 +82,7 @@
                     <div class="auth" style="width:250px;">    
                         <h2>My account</h2>
                         <div style="padding:5px;font-size:0.8em;line-height:18px;">
-                            You are logged as <b>{{ request.user }}</b>.<br>
+                            You are logged as <b>{{ request.user }}</b>.<br/>
                             <a href="{% url socialauth_editprofile %}" class="common" title="Edit profile">Edit profile</a> or 
                             <a href="{% url socialauth_social_logout %}" class="common" title="Logout">Logout</a>
                         </div>
@@ -189,9 +189,9 @@
     <div id="footer-wrapper">
         <div id="footer">
             <a class="left" href="http://creativecommons.org/licenses/by/3.0/" title="Licensed under Creative Commons License">
-                <img src="{{ MEDIA_URL }}css/images/80x15.png" />
+                <img src="{{ MEDIA_URL }}css/images/80x15.png" alt="Creative Commons License" />
             </a>
-            <a class="right" href="http://mediatemple.net/" title="Template created by MediaTemple"><img src="{{ MEDIA_URL }}css/images/mediatemple.png" alt="mediatemplate.net" /></a>
+            <a class="right" href="http://mediatemple.net/" title="Template created by MediaTemple"><img src="{{ MEDIA_URL }}css/images/mediatemple.png" alt="Template by mediatemplate.net" /></a>
         </div>  
     </div>
 

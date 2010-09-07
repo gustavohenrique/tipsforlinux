@@ -6,6 +6,6 @@
 {% ifequal request.user tip.author  %}
     <a href="{% url tip-edit tip.id %}" title="Edit"><div class="edit" style="float:left;margin-right:5px;"></div><noscript>Edit</noscript></a>
     <a href="{% url tip-delete tip.id %}" title="Delete"><div class="delete" style="float:left;"></div><noscript>Delete</noscript></a>
-    <br>
+    <br/>
 {% endifequal %}
-<br>
+<br/>
