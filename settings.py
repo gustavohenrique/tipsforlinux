@@ -4,6 +4,7 @@ PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+LOCAL = True # use in urls.py
 
 ADMINS = (
     ('TipsForLinux', 'tipsforlinux@tipsforlinux.com'),

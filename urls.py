@@ -27,7 +27,7 @@ urlpatterns = patterns('',
 )
 
 from django.conf import settings
-if settings.DEBUG:
+if settings.LOCAL:
 
     urlpatterns += patterns('',
         # This is for the CSS and static files:
