@@ -65,9 +65,12 @@ class TipForm(ModelForm):
         self.instance.approved = False
         super(TipForm, self).save(*args, **kwargs)
         
-        subject = 'New tip by %s' % self.instance.author
-        message = 'Created by %s (%s)' % (self.instance.author, self.instance.author.email)
-        mail = EmailMessage(subject, message,'noreply@tipsforlinux.com',[settings.MAIL_TO_RECEIVE_POSTS_UPDATES,])
+        from_email = settings.DEFAULT_FROM_EMAIL
+        recipient_list = [mail_tuple[1] for mail_tuple in settings.ADMINS]
+        
+        subject = '[TIP] %s' % self.instance.slug_title
+        message = "Author: %s \nE-mail: %s\n\n%s\n\n%s" % (self.instance.author, self.instance.author.email, self.instance.title, self.instance.body)
+        mail = EmailMessage(subject, message, from_email, recipient_list)
         try:
             mail.send()
         except:

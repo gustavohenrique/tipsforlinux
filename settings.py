@@ -2,14 +2,15 @@
 import os
 PROJECT_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('TipsForLinux', 'tipsforlinux.br@gmail.com'),
+    ('TipsForLinux', 'tipsforlinux@tipsforlinux.com'),
     ('Gustavo Henrique', 'gustavo@gustavohenrique.net'),
 )
 
+# Used by contact-form
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'
@@ -85,9 +86,9 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Default vars in separateds settings files
 MAIL_TO_RECEIVE_POSTS_UPDATES = ''
-EMAIL_USE_TLS = True
+#EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
+#EMAIL_PORT = '587'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = ''
