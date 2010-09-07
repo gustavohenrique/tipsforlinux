@@ -95,6 +95,7 @@ AKISMET_API_KEY = ''
 DEFAULT_FROM_EMAIL = ''
 TWITTER_CONSUMER_KEY = ''
 TWITTER_CONSUMER_SECRET = ''
+SITE_NAME = 'localhost'
 
 # Imports according of hostname
 import socket

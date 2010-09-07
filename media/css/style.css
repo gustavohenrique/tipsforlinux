@@ -581,8 +581,9 @@ height:142px;
 
 /* success messages */
 
-.success { text-align:left; line-height:1.8em; margin-top:20px;}
-.success h1, .success h2, .success h3 { font-weight:normal; padding:0}
+.success, .error { text-align:left; line-height:1.8em; margin-top:20px;}
+.success h1, .error h1, .success h2, .success h3 { font-weight:normal; padding:0}
 .success h1 { color:green; font-size:1.4em; }
 .success h2 { font-size:1.1em; }
 .success h3 { font-size:1.0em; }
+.error h1 { color:red; font-size:1.4em; }

@@ -3,6 +3,11 @@
 
 {% block main %}
 
+
+{% if error_message %}
+    <div class="error" style="border:1px dotted red;padding:10px;width:620px;margin-bottom:10px;"><h1>{{ error_message }}</h1></div>
+{% endif %}
+
 <div id="login">
 
     <p>Sign-in or Create New Account via these openid providers:<br><br></p>

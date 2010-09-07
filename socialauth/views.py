@@ -52,6 +52,12 @@ def _show_login_page(request, auth_form=None, signin_form=None):
     payload = {'fb_api_key':settings.FACEBOOK_API_KEY, 'auth_form':auth_form, 'signin_form':signin_form, 'active_menu':'login'}
     return render_to_response('socialauth/login_page.html', payload, RequestContext(request))
 
+
+def _show_login_page_and_add_error_message(request, error_message):
+    payload = {'auth_form':AuthenticationForm(), 'signin_form':SigninUserForm(), 'active_menu':'login', 'error_message':error_message}
+    return render_to_response('socialauth/login_page.html', payload, RequestContext(request))
+
+
 def signin_common_confirm(request, user_id, hash):
     try:
         user = User.objects.get(id=user_id)
@@ -63,6 +69,7 @@ def signin_common_confirm(request, user_id, hash):
         pass
         
     return HttpResponseRedirect(reverse('socialauth_error_signin_common_confirmation'))
+
 
 def _send_mail_confirmation(request, user):
     
@@ -87,7 +94,8 @@ def _send_mail_confirmation(request, user):
     
     mail = EmailMessage(subject, message,'noreply@tipsforlinux.com',[user.email,])
     mail.send()
-    
+
+
 def signin_common(request):
     if request.POST:
         signin_form = SigninUserForm(request.POST)
@@ -105,6 +113,7 @@ def signin_common(request):
         return _show_login_page(request, None, signin_form)
         
     return _show_login_page(request)
+
 
 def login_common(request):
     if request.POST:
@@ -126,12 +135,14 @@ def login_common(request):
 
     return HttpResponseRedirect(reverse('socialauth_login_page'))
 
+
 def login_page(request):
     if 'next' in request.GET:
         request.session['openid_next'] = request.GET.get('next')
         
     return _show_login_page(request)
-    
+
+
 def twitter_login(request):
     twitter = oauthtwitter.TwitterOAuthClient(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)
     request_token = twitter.fetch_request_token()  
@@ -139,24 +150,25 @@ def twitter_login(request):
     signin_url = twitter.authorize_token_url(request_token)  
     return HttpResponseRedirect(signin_url)
 
+
 def twitter_login_done(request):
     request_token = request.session.get('request_token', None)
     
     # If there is no request_token for session,
     # Means we didn't redirect user to twitter
     if not request_token:
-            # Redirect the user to the login page,
-            # So the user can click on the sign-in with twitter button
-            return HttpResponse("We didn't redirect you to twitter...")
+        # Redirect the user to the login page,
+        # So the user can click on the sign-in with twitter button
+        return _show_login_page_and_add_error_message(request, "We didn't to comunicate to twitter. Please try again later.")
     
     token = oauth.OAuthToken.from_string(request_token)
     
     # If the token from session and token from twitter does not match
     #   means something bad happened to tokens
     if token.key != request.GET.get('oauth_token', 'no-token'):
-            del request.session['request_token']
-            # Redirect the user to the login page
-            return HttpResponse("Something wrong! Tokens do not match...")
+        del request.session['request_token']
+        # Redirect the user to the login page
+        return _show_login_page_and_add_error_message(request, "Something wrong! Tokens do not match...")
     
     twitter = oauthtwitter.TwitterOAuthClient(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)  
     access_token = twitter.fetch_access_token(token)
@@ -172,10 +184,17 @@ def twitter_login_done(request):
         # Redirect to login page
         del request.session['access_token']
         del request.session['request_token']
-        return HttpResponseRedirect(reverse('tip-latest'))
+        
+        return HttpResponseRedirect(reverse('socialauth_login_page'))
 
     # authentication was successful, use is now logged in
+    if 'openid_next' in request.session :
+        openid_next = request.session.get('openid_next')
+        if len(openid_next.strip()) >  0 :
+            return HttpResponseRedirect(openid_next) 
+    
     return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+
 
 def openid_login(request):
     if 'openid_identifier' in request.GET:
@@ -186,9 +205,11 @@ def openid_login(request):
         request.session['openid_provider'] = 'Openid'
         return begin(request)
 
+
 def gmail_login(request):
     request.session['openid_provider'] = 'Google'
     return begin(request, user_url='https://www.google.com/accounts/o8/id')
+
 
 def gmail_login_complete(request):
     pass
