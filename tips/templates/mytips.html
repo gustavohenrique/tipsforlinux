@@ -24,7 +24,7 @@
             {% for tip in tips %}
                 <tr style="background:{% cycle '#ffffff' '#f8f8f8' %}">
                     <td>{{ tip.pub_date }}</td>
-                    <td><a href="{{ tip.get_abosulte_url }}">{{ tip.title }}</a></td>
+                    <td><a href="{{ tip.get_absolute_url }}">{{ tip.title }}</a></td>
                     <td class="center">{{ tip.hits }}</td>
                     <td class="center" style="color:{% if tip.approved %}green{% else %}red{% endif %}">{{ tip.approved|yesno }}</td>
                     <td><a href="{% url tip-edit tip.id %}" title="Edit"><div class="edit"></div><noscript>Edit</noscript></a></td>
@@ -57,7 +57,7 @@
             {% for b in bookmarked_tips %}
                 <tr style="background:{% cycle '#ffffff' '#f8f8f8' %}">
                     <td>{{ b.tip.pub_date }}</td>
-                    <td><a href="{{ b.tip.get_abosulte_url }}">{{ b.tip.title }}</a></td>
+                    <td><a href="{{ b.tip.get_absolute_url }}">{{ b.tip.title }}</a></td>
                     <td class="center">{{ b.tip.author }}</td>
                     <td><a href="{% url tip-bookmark b.tip.id %}?action=delete" title="Delete"><div class="delete"></div><noscript>Delete</noscript></a></td>
                 </tr>
