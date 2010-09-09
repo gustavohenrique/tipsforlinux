@@ -8,7 +8,7 @@ class LatestTipSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Tip.objects.filter(is_public=True, approved=True).order_by('-pub_date')
+        return Tip.objects.filter(is_public=True, approved=True)
 
     def lastmod(self, obj):
         # convert date to datetime format

@@ -9,7 +9,7 @@ class LatestTipFeed(Feed):
     description = "Updates on changes and additions to tipsforlinux.com."
 
     def items(self):
-        return Tip.objects.filter(is_public=True, approved=True).order_by('-pub_date')[:10]
+        return Tip.objects.filter(is_public=True, approved=True)[:10]
 
     def item_title(self, item):
         return item.title
