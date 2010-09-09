@@ -156,7 +156,7 @@
                                     {% endif %}
                                     
                                     {% for tag in tag_list_left %}
-                                        <li><a title="{{ tag.name }}" href="{% url tips-by-tag tag.slug %}">{{ tag|wordwrap:3 }}</a></li>
+                                        <li><a title="{{ tag.name }}" href="{% url tips-by-tag tag.slug %}">{{ tag.slug|truncate:9 }}</a></li>
                                     {% endfor %}
                                 </ul>
         

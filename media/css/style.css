@@ -301,11 +301,13 @@ _margin:0px 0px 20px 5px;
 padding:0px 60px 0px 0px;
 _padding:0px 60px 0px 0px;
 border-right:1px dashed #CCC;
+width:75px;
 }
 
 #tab1-2{
 float:left;
 padding:0px 0px 0px 20px;
+width:75px;
 }
 
 #tab2-1{
