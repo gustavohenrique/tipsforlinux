@@ -24,7 +24,7 @@ class Tip(models.Model):
     tags = TagField()
     
     class Meta:
-        ordering = ['-pub_date',]
+        ordering = ('-id', '-pub_date',)
     
     def __unicode__(self):
         return self.title

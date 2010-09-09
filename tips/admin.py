@@ -10,8 +10,12 @@ from tips.models import Tip, Rating, Bookmark
 from tips.forms import TipForm
 
 class TipAdmin(ModelAdmin):
-    list_display = ('title', 'author', 'pub_date', 'hits', 'enable_comments', 'is_public', 'approved')
+    search_fields = ('title', 'body')
+    list_display = ('title', 'id', 'author', 'pub_date', 'hits', 'enable_comments', 'is_public', 'approved')
     list_filter = ('author', 'enable_comments', 'is_public', 'approved')
+    list_per_page = 20
+    date_hierarchy = 'pub_date'
+    ordering = ('-id', '-pub_date')
     actions = ['approve', 'post_twitter']
     
     def approve(self, request, queryset):
@@ -23,8 +27,6 @@ class TipAdmin(ModelAdmin):
     approve.short_description = 'Approve'
     
     def post_twitter(self, request, queryset):
-        #import pdb
-        #pdb.set_trace()
         for tip in queryset:
             url = "http://%s%s" % (request.get_host(), tip.get_absolute_url())
             short_url = tinyurl.get_tiny_url(url)
