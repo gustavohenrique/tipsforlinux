@@ -3,8 +3,8 @@
 {% block main %}
 
 {% load pagination_tags %}
+
 {% autopaginate tips 10 %}
-{% autopaginate bookmarked_tips 10 %}
 
 <div class="tips">
     <div class="info"><h1>My Tips</h1></div>
@@ -41,6 +41,8 @@
 </div>
 
 <br><br>
+
+{% autopaginate bookmarked_tips 10 %}
 
 <div class="tips">
     <div class="info"><h1>Bookmarked Tips</h1></div>

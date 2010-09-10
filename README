@@ -1,15 +1,25 @@
 What it does
 -----------------
 
-TipsForLinux is a simple website that allow users send a tips about linux, like a blog.
-It has been created using django with django-tagging, django-socialauth, django-contact-form, django-paggination and comments (native) apps.
-Users can use openid authentication system provided by twitter, google and yahoo, but is possible to use common authentication system too (based in django.contrib.auth).
-
+TipsForLinux is a simple website that allow users send a tips about
+linux, like a blog.
+It has been created using django with django-tagging, django-socialauth,
+django-contact-form, django-paggination and comments (native) apps.
+Users can use openid authentication system provided by twitter, google
+and yahoo, but is possible to use common authentication system too
+(based in django.contrib.auth).
+A Twitter integration allow to post the tip name and the tip
+URL (converted in tinyurl) via admin interface.
 
 Implementation
 -----------------
 
 Download the sources and install the necessaries libs.
+
+Libs included
+
+1. python-oauth2 (github.com/brosner/python-oauth2.git)
+2. python-twitter (python-twitter.googlecode.com/hg)
 
 Libs you need to install:
 
@@ -24,4 +34,5 @@ Libs you need to install:
 Limitations
 -----------------
 
-I had a trouble to generate facebook key so I don't implemented authentication based on it.
+I had a trouble to generate facebook key so I don't implemented
+authentication based on it.
