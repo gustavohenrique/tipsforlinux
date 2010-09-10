@@ -30,8 +30,13 @@ class TipAdmin(ModelAdmin):
         for tip in queryset:
             url = "http://%s%s" % (request.get_host(), tip.get_absolute_url())
             short_url = tinyurl.get_tiny_url(url)
-            POST_MESSAGE = "%s %s" % (tip.title, short_url)
             
+            POST_MESSAGE = u"%s %s" % (tip.title, short_url)
+            try:
+                POST_MESSAGE = POST_MESSAGE.encode('utf-8')
+            except:
+                pass
+                
             CONSUMER_KEY = getattr(settings, "TWITTER_CONSUMER_KEY", "")
             CONSUMER_SECRET = getattr(settings, "TWITTER_CONSUMER_SECRET", "")
             TOKEN_KEY = getattr(settings, "TWITTER_ACCESS_TOKEN_KEY", "")
@@ -40,7 +45,7 @@ class TipAdmin(ModelAdmin):
                 api = twitter.Api(CONSUMER_KEY, CONSUMER_SECRET, TOKEN_KEY, TOKEN_SECRET)
                 api.PostUpdate(POST_MESSAGE)
             except:
-                pass
+                pass            
             
     post_twitter.short_description = 'Post in Twitter'
     
