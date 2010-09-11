@@ -33,5 +33,5 @@ def tags():
 
 
 def top_tips():
-    top_tips = Tip.objects.all().order_by('hits')[:20]
+    top_tips = Tip.objects.filter(is_public=True, approved=True).order_by('-hits')[:20]
     return {'top_tips': top_tips}
