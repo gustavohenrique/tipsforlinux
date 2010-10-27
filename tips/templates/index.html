@@ -11,13 +11,17 @@
 {% load pagination_tags %}
 {% autopaginate tips 10 %}
 
+
 {% for tip in tips %}
 <div class="post"> 
+
+
    {% include 'post_title.html' %}
+
    <div class="post-body">
-        {{ tip.body|striptags|linebreaksbr|truncate:100|safe }}
-    </div>
-    
+        {{ tip.body|striptags|truncate:100|removetags:"div b span a p br table"|safe }}
+   </div>
+
     {% if tip.body|striptags|truncate:100|length > 100 %}
         <div class="post-footer reply">
             <a href="{{ tip.get_absolute_url }}" class="button">keep reading...</a>
