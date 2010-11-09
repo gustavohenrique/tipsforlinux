@@ -4,7 +4,7 @@ from tips.feeds import LatestTipFeed
 urlpatterns = patterns('',
     url(r'^$', 'tips.views.show_latest', name='tip-latest'),    
     url(r'^mytips/$', 'tips.views.mytips', name='tip-mytips'),
-    url(r'^read/(?P<slug>[a-zA-Z0-9_.-]+)/$', 'tips.views.read_more', name='tip-read'),
+    url(r'^read/(?P<id>.+)/(?P<slug>[a-zA-Z0-9_.-]+)/$', 'tips.views.read_more', name='tip-read'),
     url(r'^edit/(?P<id>.+)/$', 'tips.views.show_edit_form', name='tip-edit'),
     url(r'^delete/(?P<id>.+)/$', 'tips.views.delete_tip', name='tip-delete'),
     url(r'^add/$', 'tips.views.add_tip', name='tip-add'),

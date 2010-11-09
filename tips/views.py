@@ -37,11 +37,11 @@ def by_tag(request, slug):
         raise Http404
         
 
-def read_more(request, slug):
-    tip = get_object_or_404(Tip, slug_title=slug)
+def read_more(request, id, slug=None):
+    tip = get_object_or_404(Tip, pk=id)
     
     if not tip.author == request.user:
-        tip.hits = tip.hits + 1
+        tip.hits += 1
         tip.save()
     
     context = {'tip': tip, 'active_menu':'home'}
@@ -103,7 +103,7 @@ def delete_tip(request, id):
 
 
 @login_required
-def show_edit_form(request, id):
+def show_edit_form(request, id, slug=None):
     tip = get_object_or_404(Tip, id=id, author=request.user)
     context = {'form': TipForm(instance=tip), 'active_menu':'mytips'}
     return direct_to_template(request, 'edit.html', context)

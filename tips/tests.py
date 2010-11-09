@@ -51,9 +51,10 @@ class NavegationTest(TestCase):
     
     
     def test_show_full_tip_page(self):
-        response = self.c.get('/tips/read/other-method-to-restart-samba', follow=True)
+        response = self.c.get('/tips/read/4/other-method-to-restart-samba', follow=True)
         tip = response.context['tip']
         self.assertEquals('Other method to restart samba', tip.title)
+        self.assertEquals(4, tip.id)
         self.assertEquals("$ sudo kill -HUP `cat /var/run/samba/smbd.pid`", tip.body)
         self.assertEquals('samba', tip.get_tags()[0].slug)
 
@@ -81,7 +82,7 @@ class NavegationTest(TestCase):
     def test_rating_tip_as_useful(self):
         self.c.login(username='gustavo', password='henrique')
         self.c.get('/tips/rate/2/?score=up', follow=True)
-        response = self.c.get('/tips/read/configure-x', follow=True)
+        response = self.c.get('/tips/read/2/configure-x', follow=True)
         rating = response.context['rating']
         self.assertEquals('useful', rating.get_rating())
     
@@ -89,12 +90,12 @@ class NavegationTest(TestCase):
     def test_rating_tip_as_not_useful_after_rating_as_useful(self):
         self.c.login(username='gustavo', password='henrique')
         self.c.get('/tips/rate/2/?score=up', follow=True)
-        response = self.c.get('/tips/read/configure-x', follow=True)
+        response = self.c.get('/tips/read/2/configure-x', follow=True)
         rating = response.context['rating']
         self.assertEquals('useful', rating.get_rating())
         
         self.c.get('/tips/rate/2/?score=down', follow=True)
-        response = self.c.get('/tips/read/configure-x', follow=True)
+        response = self.c.get('/tips/read/2/configure-x', follow=True)
         rating = response.context['rating']
         self.assertEquals('not useful', rating.get_rating())
        
@@ -157,4 +158,8 @@ class TipTest(TestCase):
         t.tags = 'samba linux'
         t.save()
         self.assertEquals('samba linux', t.tags)
+
+    def test_increase_hit_on_view_tip(self):
+        t = Tip()
+        
     

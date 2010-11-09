@@ -30,7 +30,7 @@ class Tip(models.Model):
         return self.title
         
     def get_absolute_url(self):
-        return '/tips/read/%s' % self.slug_title
+        return '/tips/read/%d/%s' % (self.id, self.slug_title)
     
     def set_tags(self, tags):
         Tag.objects.update_tags(self, tags)
