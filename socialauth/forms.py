@@ -1,8 +1,10 @@
 from django import forms
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
 
 from socialauth.models import AuthMeta
+from socialauth.models import CustomerUser as User
 
 
 ALLOW_MULTIPLE_USERNAME_EDITS = getattr(settings, 'ALLOW_MULTIPLE_USERNAME_EDITS', False)
@@ -82,10 +84,14 @@ class EditProfileForm(forms.Form):
         return user
         
 
-from django.contrib.auth.forms import UserCreationForm
+
 class SigninUserForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    
+
+    class Meta:
+        model = User
+        fields = ("username",)
+        
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
     

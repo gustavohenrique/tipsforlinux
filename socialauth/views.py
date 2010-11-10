@@ -36,7 +36,9 @@ from cgi import parse_qs
 import sha
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.mail import EmailMessage
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+
+from socialauth.models import CustomerUser as User
 
 
 def _show_login_page(request, auth_form=None, signin_form=None):

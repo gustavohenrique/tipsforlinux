@@ -2,6 +2,10 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.core import mail
+from django.contrib.auth.models import User
+
+from tips.models import Tip
+from tips.forms import TipForm
 
 
 class NavegationTest(TestCase):
@@ -122,10 +126,6 @@ class NavegationTest(TestCase):
         self.assertEquals(0, len(bookmarked_tips))
 
 
-from django.contrib.auth.models import User
-from tips.models import Tip
-from tips.forms import TipForm
-
 class TipTest(TestCase):
     
     fixtures = ['auth.json', 'tips.json']
@@ -158,8 +158,3 @@ class TipTest(TestCase):
         t.tags = 'samba linux'
         t.save()
         self.assertEquals('samba linux', t.tags)
-
-    def test_increase_hit_on_view_tip(self):
-        t = Tip()
-        
-    

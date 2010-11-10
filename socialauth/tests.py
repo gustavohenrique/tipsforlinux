@@ -1,3 +1,4 @@
+"""
 from selenium import selenium
 import unittest, time, re
 from django.contrib.auth.models import User
@@ -15,7 +16,7 @@ class TwitterTester(unittest.TestCase):
         #Test that a user is created after logging in via Twitter for the first time.
         initial_user_count = User.objects.count()
         sel.open("/accounts/login/")
-	sel.click("id=twitter_login_link")
+    sel.click("id=twitter_login_link")
         sel.wait_for_page_to_load("30000")
         try:
             sel.click("link=Sign out")
@@ -35,7 +36,7 @@ class TwitterTester(unittest.TestCase):
         self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
         
-"""
+
 class OpenIdTester(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
@@ -64,10 +65,24 @@ class OpenIdTester(unittest.TestCase):
     def tearDown(self):
         self.selenium.stop()
         self.assertEqual([], self.verificationErrors)
-
-if __name__ == "__main__":
-    unittest.main()
 """
+
+import unittest
+from socialauth.models import CustomerUser
+from django.core import mail
+
+class UserTest(unittest.TestCase):
+    def test_send_mail_to_admin_after_registered_user_but_dont_updated(self):
+        user = CustomerUser()
+        user.username = 'john'
+        user.email = 'lennon@thebeatles.com'
+        user.password = 'johnpassword'
+        user.save()
+        self.assertEqual(1, len(mail.outbox))
+
+        user.first_name = 'Johnny'
+        user.save()
+        self.assertEqual(1, len(mail.outbox))
 
 
 if __name__ == "__main__":

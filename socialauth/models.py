@@ -1,7 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 from django.db import connection, transaction
+from django.core.mail import EmailMessage
+from django.conf import settings
+
+class CustomerUser(User):
+    class Meta:
+        proxy = True
+        
+    def _send_mail_to_admin(self):
+        subject = '[USER] New user registered on tipsforlinux.com'
+        message = 'Name: %s %s\nUsername: %s\nE-mail: %s' % (self.first_name, self.last_name, self.username, self.email)
+
+        from_email = settings.DEFAULT_FROM_EMAIL
+        recipient_list = [mail_tuple[1] for mail_tuple in settings.ADMINS]
+        
+        mail = EmailMessage(subject, message, from_email, recipient_list)
+        try:
+            mail.send()
+        except:
+            pass
+        
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self._send_mail_to_admin()
+        super(User, self).save(*args, **kwargs)
+        
+        
 
 class AuthMeta(models.Model):
     """Metadata for Authentication"""
