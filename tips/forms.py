@@ -62,7 +62,7 @@ class TipForm(ModelForm):
             self.initial['tags'] = ' '.join([item.name for item in Tag.objects.get_for_object(self.instance)])
     
     def save(self, *args, **kwargs):        
-        self.instance.approved = False
+        self.instance.approved = settings.APPROVE_NEW_TIPS_AUTOMATICALY
         super(TipForm, self).save(*args, **kwargs)
         
         from_email = settings.DEFAULT_FROM_EMAIL

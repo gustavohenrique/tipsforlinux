@@ -468,6 +468,14 @@ form.genericform #id_title, form.genericform #id_tags, form.genericform #id_body
 width:620px;
 }
 form.genericform .errormessage { color:red; font-size: 0.8em; }
+form.genericform .terms {
+color:red;
+font-size:0.8em;
+margin-top:10px;
+padding:5px;
+border:1px dotted gray;
+width:620px
+}
 
 /* openId */
 

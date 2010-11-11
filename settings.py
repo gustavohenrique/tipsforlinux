@@ -106,6 +106,8 @@ SITE_NAME = 'localhost'
 
 ROBOTS_SITEMAP_URL = '/sitemap.xml'
 
+APPROVE_NEW_TIPS_AUTOMATICALY = True
+
 # Imports according of hostname
 import socket
 hostname = socket.gethostname()
