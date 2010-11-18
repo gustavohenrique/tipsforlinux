@@ -141,18 +141,25 @@ class ContactForm(forms.Form):
                            widget=forms.TextInput(attrs=attrs_dict),
                            label=u'Name')
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=200)),
-                             label=u'E-mail')
+                                                               maxlength=200)), label=u'E-mail')
+
+    subject_text = forms.CharField(label=u'Subject')
+                              
     body = forms.CharField(widget=forms.Textarea(attrs=attrs_dict),
                               label=u'Message')
+
     
-    from_email = settings.DEFAULT_FROM_EMAIL
+    
+    #from_email = settings.DEFAULT_FROM_EMAIL
     
     recipient_list = [mail_tuple[1] for mail_tuple in settings.MANAGERS]
 
-    subject_template_name = "contact_form/contact_form_subject.txt"
+    #subject_template_name = "contact_form/contact_form_subject.txt"
     
     template_name = 'contact_form/contact_form.txt'
+
+    def from_email(self):
+        return self.cleaned_data['email']
 
     def message(self):
         """
@@ -171,9 +178,9 @@ class ContactForm(forms.Form):
         Render the subject of the message to a string.
         
         """
-        subject = loader.render_to_string(self.subject_template_name,
-                                          self.get_context())
-        return ''.join(subject.splitlines())
+        #subject = loader.render_to_string(self.subject_template_name, self.get_context())
+        #return ''.join(subject.splitlines())
+        return self.cleaned_data['subject_text']
     
     def get_context(self):
         """
