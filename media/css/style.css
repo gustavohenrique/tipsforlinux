@@ -588,7 +588,12 @@ background-repeat: no-repeat;
 width:150px;
 height:142px;
 }
-
+#error404 {
+text-align:center;
+color:red;
+padding:20px;
+line-height:50px;
+}
 /* success messages */
 
 .success, .error { text-align:left; line-height:1.8em; margin-top:20px;}

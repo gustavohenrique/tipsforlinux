@@ -64,7 +64,7 @@ def simple_search(request):
     if 'text' in request.GET:
         text = request.GET['text']
         
-        tips = get_list_or_404(Tip, Q(title__icontains=text) | Q(body__icontains=text))
+        tips = Tip.objects.filter(Q(title__icontains=text) | Q(body__icontains=text))
         return _show_tips_in_home(request, tips, None)
     
     return HttpResponseRedirect(reverse('tip-latest'))

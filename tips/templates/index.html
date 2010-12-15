@@ -5,7 +5,10 @@
 {% load truncate %}
 
 {% if not tips %}
-    <p>Sorry, no tips on this moment.</p>
+<div id="error404">
+    <img src="{{ MEDIA_URL }}css/images/sadpenguin.png" width="150" height="137" alt="Sad penguin"/>
+    <p>Sorry, no tips found.</p>
+</div>
 {% endif %}
 
 {% load pagination_tags %}
