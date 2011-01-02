@@ -1,6 +1,6 @@
 {% load truncate %}
 
-<h1 class="post-title"><a href="{{ tip.get_absolute_url }}">{{ tip.title|upper|truncate:47 }}</a></h1>
+<h1 class="post-title"><a href="{{ tip.get_absolute_url }}" title="{{ tip.title }}"><strong>{{ tip.title|upper|truncate:47 }}</strong></a></h1>
 <h2 class="post-header-line1">{{ tip.pub_date|date:"F j, Y" }} by {{ tip.author }} {% if tip.get_tags %}| {{ tip.get_tags|safeseq|join:", " }} {% endif %}</h2>
 
 {% ifequal request.user tip.author  %}

@@ -3,6 +3,12 @@
 {% load comments %}
 {% load gravatar %}
 
+{% block meta_keywords %}{{ tip.title }}{% endblock %}
+
+{% block title %}
+  {{ block.super }} - {{ tip.title|lower }}
+{% endblock %}
+
 {% block main %}
 <div class="post">
     {% include 'post_title.html' %}

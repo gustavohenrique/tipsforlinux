@@ -1,18 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
 <head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>Tips For Linux</title>
-<meta name="description" content="Tips for GNU/Linux avaiable from anywhere" />
-<meta name="keywords" content="linux, shell, ubuntu, samba, squid, ssh, network, wireless, tcp" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="author" content="Gustavo Henrique" />
+<meta name="geo.region" content="BR-RJ" />
+<meta name="geo.placename" content="Rio de Janeiro" />
+<meta name="geo.position" content="-22.90496;-43.176076" />
+<meta name="ICBM" content="-22.90496, -43.176076" />
+<meta name="description" lang="en-us" content="Tips For Linux newbies and advanced users about how to use linux for system administration tasks of the day-to-day, to increase the productivity of developers and users to help solve a troubles" />
+<meta name="description" lang="pt-br" content="Dicas para iniciantes e usuários avançados Linux sobre como usar o linux para as tarefas de administração do sistema do dia-a-dia, para aumentar a produtividade de desenvolvedores e para ajudar os usuários a resolverem problemas" />
+<meta name="keywords" content="{% block meta_keywords %}linux, shell, ubuntu, samba, squid, ssh, network, wireless{% endblock %}" />
+
 <link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}css/style.css" />
-<style type="text/css">
-.recentcomments a {
-    display: inline !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-</style>
+<link rel="search" type="application/opensearchdescription+xml" href="{{ MEDIA_URL }}search.xml" title="TipsForLinux Search" />
 
 <!-- Scripts -->
 <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
@@ -39,6 +39,8 @@
 
 {% load truncate %}
 
+<title>{% block title %}TipsForLinux{% endblock %}</title>
+
 {% block extra_head %}{% endblock %}
 
 </head>
@@ -53,7 +55,7 @@
             <div id="header-wrap">
             
                 <div id="header">
-                    <a href="/" title="Home"><img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/></a>
+                    <a href="/" title="Home"><img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/><h1>Tips for Linux newbies and advanced users</h1></a>
                 </div>
         
                 <div id="nav-wrapper">
@@ -116,7 +118,7 @@
                 
                 <div class="side-content">
                     <div class="sbox">
-                        <a href="{% url tip-feed %}" title="Subscribe our RSS">
+                        <a href="http://feeds.feedburner.com/TipsForLinux" title="Subscribe our RSS">
                             <img src="{{ MEDIA_URL }}css/images/rss.png" alt="Subscribe our RSS" />
                         </a>
                     </div>
