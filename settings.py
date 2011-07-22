@@ -60,8 +60,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 ROOT_URLCONF = 'urls'
 
+
+MAIN_TEMPLATE_DIR=os.path.join(PROJECT_ROOT_PATH, 'templates')
+
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT_PATH, 'templates')
+    os.path.join(MAIN_TEMPLATE_DIR, 'web')
 )
 
 INSTALLED_APPS = (

@@ -1,0 +1,19 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+<div id="contact" class="auth">
+    <h2>Contact us</h2>
+    
+    
+    <form action="." method="post" id="contactform" class="authform">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <br><input type="submit" name="submit" id="btSend" value="Send" class="button">
+    </form>
+</div>
+
+
+{% endblock %}

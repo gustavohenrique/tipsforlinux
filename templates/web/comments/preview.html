@@ -1,0 +1,34 @@
+{% extends 'base_site.html' %}
+
+{% load comments i18n %}
+
+{% block main %}
+
+
+<div id="comment-box">
+    <div id="respond">
+        <h3>Check your comment</h3>
+        <div class="formerrors">{{ form.errors }}</div>
+
+        <form id="commentform" action="{% comment_form_target %}" method="post">
+            {% csrf_token %}
+            
+            <p>{{ form.name }} {{ form.name.label_tag }} (required)</p>
+            <p>{{ form.email }} {{ form.email.label_tag }} (required)</p>
+            <p>{{ form.url }} {{ form.url.label_tag }}</p>
+            <p>{{ form.comment }}</p>
+            <p>{{ form.honeypot }} {{ form.honeypot.label_tag }}</p>
+          
+            <input type="submit" name="submit" class="button" value="Submit"/>
+            
+            
+            {{ form.content_type }} {{ form.object_pk }} {{ form.timestamp }} {{ form.security_hash }}
+            
+            <input type="hidden" name="next" value="{{ next }}" />
+          
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

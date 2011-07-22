@@ -1,0 +1,15 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+<div class="error">
+    <h1>Sorry! Error 500 internal server error</h1>
+    
+    <p><br/>It seems that something went wrong. Please feel free to contact us if the problem persists.</p>
+    
+    <p><br/><a class="common" href="{% url tip-latest %}" title="Back to home">Trying going to back to the homepage</a></p>
+</div>
+
+
+
+{% endblock %}

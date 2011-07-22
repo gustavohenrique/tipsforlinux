@@ -1,0 +1,16 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+<div class="error">
+    <h1>Oh no! Error 404 page not found</h1>
+    
+    <p><br/>It seems that the page you were trying to reach doesn't exist anymore,
+    or maybe it has just moved. Please feel free to contact us if the problem persists.</p>
+    
+    <p><br/><a class="common" href="{% url tip-latest %}" title="Back to home">Trying going to back to the homepage</a></p>
+</div>
+
+
+
+{% endblock %}

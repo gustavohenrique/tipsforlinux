@@ -1,0 +1,15 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+<p style="color:green;font-size:1.4em;"></p>
+
+<div class="success">
+    <h1>Success!</h1>
+    <h2>Your message has been sent.</h2>
+    <h3>Go to 
+        <a href="{% url tip-latest %}" title="Home" class="common">home</a>.
+    </h3>
+</div>
+
+{% endblock %}
