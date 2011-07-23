@@ -1,0 +1,42 @@
+{% extends "base_site.html" %}
+
+{% block main %}
+
+{% load truncate %}
+
+{% if not tips %}
+<div id="error404">
+    <img src="{{ MEDIA_URL }}css/images/sadpenguin.png" width="150" height="137" alt="Sad penguin"/>
+    <p>Sorry, no tips found.</p>
+</div>
+{% endif %}
+
+{% load pagination_tags %}
+{% autopaginate tips 10 %}
+
+
+<ul class="list_data">
+{% for tip in tips %}
+   <li>
+       <a href="{{ tip.get_absolute_url }}" title="{{ tip.title }}">
+           {% include 'post_title.html' %}
+           <span class="description">{{ tip.body|striptags|truncate:100|removetags:"div b span a p br table"|safe }}</span>
+       </a>
+       <br class="clear"/>
+   </li>
+<!--
+    {% if tip.body|striptags|truncate:100|length > 100 %}
+        <div class="post-footer reply">
+            <a href="{{ tip.get_absolute_url }}" class="button">keep reading...</a>
+        </div>
+    {% endif %}
+-->
+{% endfor %}
+</ul>
+
+<br class="clear"/>
+
+{% paginate %}
+
+
+{% endblock %}

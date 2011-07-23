@@ -1,0 +1,19 @@
+{% extends 'base_site.html' %}
+
+{% block main %}
+
+<div class="info">
+  <h1>Edit Tip</h1>
+</div>
+
+<form id="formTipEdit" name="formTipEdit" action="{% url tip-update %}" method="post" class="genericform">
+    {% include 'form.html' %}
+    
+    <div>
+        <input type="submit" value="Save" class="button">
+        <input type="button" value="Cancel" class="button" onclick="history.go(-1);">
+    </div>
+
+</form>
+
+{% endblock %}

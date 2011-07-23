@@ -1,0 +1,37 @@
+{% extends 'base_site.html' %}
+
+{% load comments %}
+{% load gravatar %}
+{% load truncate %}
+
+{% block meta_keywords %}{{ tip.title }}{% endblock %}
+
+{% block title %}
+  {{ block.super }} - {{ tip.title|lower }}
+{% endblock %}
+
+{% block main %}
+<div class="inner">
+    <h2 class="header">{{ tip.title|upper|truncate:47 }}</h2>
+    <p>
+        {{ tip.body|striptags|linebreaksbr|safe }}
+    </p>
+</div>
+
+<br class="clear"/><br/>
+
+<ul class="list_data">
+    {% get_comment_list for tip as comment_list %}
+    {% for comment in comment_list %}
+    <li>
+        <span class="avatar">
+            {% gravatar comment.user_email 48 %}
+        </span>
+        <span class="header with_avatar">{{ comment.name }} says</span><br/>
+        <span class="description">{{ comment.comment|linebreaks }}</span>
+        <br class="clear"/>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

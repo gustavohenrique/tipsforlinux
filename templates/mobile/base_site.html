@@ -12,23 +12,8 @@
 <meta name="description" lang="en-us" content="Tips For Linux newbies and advanced users about how to use linux for system administration tasks of the day-to-day, to increase the productivity of developers and users to help solve a troubles" />
 <meta name="description" lang="pt-br" content="Dicas para iniciantes e usuários avançados Linux sobre como usar o linux para as tarefas de administração do sistema do dia-a-dia, para aumentar a produtividade de desenvolvedores e para ajudar os usuários a resolverem problemas" />
 <meta name="keywords" content="{% block meta_keywords %}linux, shell, ubuntu, samba, squid, ssh, network, wireless{% endblock %}" />
- 
- 
-<!-- Website Title --> 
-<title>Full Admin - Mobile</title>
 
-<!-- Meta data for SEO -->
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
-
-<!-- Template stylesheet -->
-<link rel="stylesheet" href="css/screen.css" type="text/css" media="all"/>
-
-<link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}css/screen.css" />
-
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/lib/jquery-ui.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}js/custom.js"></script>
+<link rel="stylesheet" type="text/css" media="all"  href="{{ MEDIA_URL }}css/mobile/screen.css" />
 
 <!-- google analytics -->
 <script type="text/javascript">
@@ -54,28 +39,28 @@
 <body>
 
 <div id="wrapper">
-	<div id="top_bar">
-		<div class="inner">
-			<a href="/" title="Home"><img src="{{ MEDIA_URL }}css/images/logo.png" alt="Logo"/><h1>Tips for Linux newbies and advanced users</h1></a>
-		</div>
-		<div class="home">
-			<a href="/">
-				<img src="{{ MEDIA_URL }}css/images/mobile/icon_home.png" alt="" width="40" height="40"/>
-			</a>
-		</div>
-	</div>
-	
-	<br/><br/>
-	
-	<div id="content_wrapper">
-		<div class="search">
-			<form method="get" id="searchform" action="{% url tip-simple-search %}">
-				<p><input type="text" value="" onclick="this.value=''" name="text" id="s" class="search"/></p>
-			</form>
-		</div>
-		
-		{% block main %} {% endblock %}
-	</div>
+    <div id="top_bar">
+        <div class="inner">
+            <a href="/" title="Home"><img src="{{ MEDIA_URL }}css/images/logo.png" width="250" height="50" alt="Logo"/></a>
+        </div>
+        <div class="home">
+            <a href="/">
+                <img src="{{ MEDIA_URL }}css/mobile/images/icon_home.png" alt="" width="40" height="40"/>
+            </a>
+        </div>
+    </div>
+    
+    <br/><br/>
+    
+    <div id="content_wrapper">
+        <div class="search">
+            <form method="get" id="searchform" action="{% url tip-simple-search %}">
+                <p><input type="text" value="Search" onfocus="this.value=''" onblur="this.value='Search'" name="text" id="s" class="search"/></p>
+            </form>
+        </div>
+        
+        {% block main %} {% endblock %}
+    </div>
 
 </div>
 

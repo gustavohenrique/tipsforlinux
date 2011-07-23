@@ -1,0 +1,402 @@
+/* 
+	CSS Reset 
+*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td 
+{
+	margin:0;
+	padding:0;
+	border:0;
+	font-weight:inherit;
+	font-style:inherit;
+	font-size:100%;
+	font-family:inherit;
+	vertical-align:baseline;
+}
+body 
+{
+	line-height:1.5;
+}
+blockquote:before, blockquote:after, q:before, q:after 
+{
+	content:"";
+}
+blockquote, q 
+{
+	quotes:"" "";
+}
+a img 
+{
+	border:none;
+}
+
+
+/*
+	Global layout
+*/
+
+body
+{
+	background: #e8e8e8;
+	font-family: Arial;
+	padding: 0;
+	margin: 0;
+	color: #666666;
+}
+
+a
+{
+	color: #000;
+	text-decoration: none;
+}
+
+hr
+{
+	border-top: 1px solid #ccc;
+}
+
+img.middle
+{
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.clear
+{
+	clear: both;
+}
+
+#wrapper
+{
+	width: 100%;
+}
+
+h1, h1 a
+{
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+h2
+{
+	color: #000;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+h2.header
+{
+	color: #0089D8;
+}
+
+h3
+{
+	color: #000;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h4
+{
+	color: #000;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+ul.global
+{
+	margin-left: 20px;
+	list-style-image:url("../images/arrow_li.png");
+}
+
+ul.global li
+{
+	line-height: 2em;
+}
+
+ol.global
+{
+	margin-left: 30px;
+}
+
+ol.global li
+{
+	line-height: 2em;
+}
+
+table.global tr
+{
+	background: #ffffff;
+}
+
+table.global tr td, table.global tr th
+{
+	border-bottom: 1px solid #cccccc;
+}
+
+table.global tr th
+{
+	font-weight: bold;
+	background: #ebebeb;
+	text-align: left;
+}
+
+table.global tr th, table.global tr td
+{
+	padding: 7px 15px 7px 15px;
+}
+
+table.global tr td
+{
+	color: #666666;
+}
+
+blockquote
+{
+	padding-left: 55px;
+	font-style: italic;
+	width: 70%;
+	background: transparent url("../images/bg_quote.png") no-repeat top left;
+}
+
+#top_bar
+{
+	width: 100%;
+	background: #000 url('../images/bg_menu.png') repeat-x;
+	border-bottom: 1px solid #333;
+	float: left;
+}
+
+#top_bar .inner
+{
+	margin: 15px 0 -1px 15px;
+	float: left;
+}
+
+#top_bar .home
+{
+	margin: 10px 5px 0 0;
+	float: right;
+}
+
+#content_wrapper
+{
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+}
+
+#content_wrapper .inner
+{
+	width: 94%;
+	margin: 10px 0 10px 10px;
+	float: left;
+}
+
+label {
+	font-size: 14px;
+	text-align: left;
+	display: block;
+	margin: 5px 0 2px 4px;
+	font-weight: bold;
+	color: #666;
+}
+ 
+label.inside {
+    position: absolute;
+    margin: 14px 0 0 15px;
+    color: #BBB;
+    text-shadow: none;
+}
+ 
+input, textarea {
+	box-sizing: border-box;
+    margin: 6px;
+    padding: 6px;
+    font-size: 16px;
+    font-weight: normal;	
+}
+ 
+input[type='text'], input[type='password'], select {
+    width: 90%;
+    font-size: 16px;
+}
+
+input.blur
+{
+	color: #999;
+	font-style: italic;
+}
+
+#shortcut_item
+{
+	display: block;
+	list-style: none;
+	float: left;
+	margin-top: 10px;
+}
+
+#shortcut_item li
+{
+	display: block;
+	float: left;
+	margin-bottom: 50px;
+}
+
+#shortcut_item li a
+{
+	display: block;
+	float: left;
+	width: 95px;
+	height: 50px;
+	text-align: center;
+}
+
+#shortcut_item li .title
+{
+	display: block;
+	text-align: center;
+	color: #000;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0px 1px #fff;
+}
+
+.list_data
+{
+	display: block;
+	list-style: none;
+	float: left;
+	width: 100%;
+	border-top: 1px solid #ccc;
+}
+
+.list_data li
+{
+	display: block;
+	border-bottom: 1px solid #ccc;
+}
+
+.list_data li a
+{
+	display: block;
+	text-decoration: none;
+	margin: 10px;
+}
+
+.list_data li .avatar
+{
+	float: left;
+	margin: 5px;
+}
+
+.list_data li .avatar img
+{
+	border: 5px solid #fff;
+}
+
+.list_data li .header
+{
+	float: left;
+	font-weight: bold;
+	color: #000;
+}
+
+.list_data li .header.with_avatar
+{
+	margin-top: 10px;
+	width: 60%;
+}
+
+.list_data li .description
+{
+	float: left;
+	color: #666666;
+}
+
+.pagination {
+	margin: 20px 0 20px 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 12px;
+}
+
+.pagination a {
+	padding: 5px 7px 5px 7px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+ 	margin: 0 0 0 3px;
+ 	background: #cccccc url("../images/bt_g.png") repeat-x;
+	border: 1px solid #AAA9A9;
+	color: #333333;
+}
+
+.pagination a:hover {
+	-moz-box-shadow: 0 1px 3px #666;
+ 	-webkit-box-shadow: 0 1px 3px #666;
+ 	box-shadow: 0 1px 3px #666;
+ 	border: 1px solid #666666;
+	background: #999999 url("../images/bt_gh.png") repeat-x;
+}
+
+.pagination a:active, .pagination a.active {
+	color: #666666;
+	border: 1px solid #999999;
+	background: #999999 url("../images/bt_ga.png") repeat-x;
+	text-shadow: 0 0 0 #999999;
+}
+
+.search
+{
+	margin-bottom: 8px;
+}
+
+.alert_warning
+{
+	margin: auto;
+	background: #FFFBCC;
+	border: 1px solid #E6DB55;
+	cursor: pointer;
+	margin: 10px 0 10px 0;
+	font-weight: bold;
+	color: #69610A;
+}
+
+.alert_info
+{
+	margin: auto;
+	background: #DBE3FF;
+	border: 1px solid #A2B4EE;
+	cursor: pointer;
+	margin: 10px 0 10px 0;
+	color: #0888C3;
+	font-weight: bold;
+}
+
+.alert_success
+{	
+	margin: auto;
+	background: #D5FFCE;
+	border: 1px solid #9ADF8F;
+	cursor: pointer;
+	margin: 10px 0 10px 0;
+	color: #508600;
+	font-weight: bold;
+}
+
+.alert_error
+{	
+	margin: auto;
+	background: #FFCECE;
+	border: 1px solid #DF8F8F;
+	margin: 10px 0 10px 0;
+	color: #E3302C;
+	font-weight: bold;
+}
+
+.alert_warning p, .alert_info p, .alert_success p, .alert_error p
+{
+	margin: 15px;
+}
