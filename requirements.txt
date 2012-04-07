@@ -1,7 +1,11 @@
 -e git+git://github.com/openid/python-openid.git#egg=python-openid
 -e git+git://github.com/sciyoshi/pyfacebook.git#egg=pyfacebook
 -e svn+http://oauth.googlecode.com/svn/code/python#egg=oauth
+Django==1.3.1
 hashlib
 simplejson
 httplib2
-Django
+django_jenkins
+pylint
+coverage
+pep8

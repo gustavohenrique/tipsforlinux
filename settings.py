@@ -82,7 +82,20 @@ INSTALLED_APPS = (
     'pagination',
     'tips',
     'contact_form',
+    'django_jenkins',
 )
+
+PROJECT_APPS = (
+    'tips',
+)
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+    'django_jenkins.tasks.run_pep8',
+)
+
 
 DATE_FORMAT = '%d/%m/%Y'
 DATETIME_FORMAT = 'd/m/Y - H:i:s'
