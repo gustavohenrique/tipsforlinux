@@ -1,5 +1,6 @@
-What it does
------------------
+# TipsForLinux (tipsforlinux.com)
+
+## What it does
 
 TipsForLinux is a simple website that allow users send a tips about
 linux, like a blog.
@@ -11,31 +12,25 @@ and yahoo, but is possible to use common authentication system too
 A Twitter integration allow to post the tip name and the tip
 URL (converted in tinyurl) via admin interface.
 
-Implementation
------------------
+## Installation
 
 Download the sources and install the necessaries libs.
 
 Libs included
 
-1. python-oauth2 (github.com/brosner/python-oauth2.git)
-2. python-twitter (python-twitter.googlecode.com/hg)
+* python-oauth2 (github.com/brosner/python-oauth2.git)
+* python-twitter (python-twitter.googlecode.com/hg)
 
 Libs you need to install:
 
-1. pyfacebook (github.com/sciyoshi/pyfacebook/)
-2. hashlib (pip install hashlib)
-3. python-openid (github.com/openid/python-openid)
-4. yadis (pypi.python.org/pypi/python-yadis)
-5. python-oauth (oauth.googlecode.com/svn/code/python)
-6. simplejson (pypi.python.org/pypi/simplejson)
+* pyfacebook (github.com/sciyoshi/pyfacebook/)
+* hashlib (pip install hashlib)
+* python-openid (github.com/openid/python-openid)
+* yadis (pypi.python.org/pypi/python-yadis)
+* python-oauth (oauth.googlecode.com/svn/code/python)
+* simplejson (pypi.python.org/pypi/simplejson)
 
 You can install using pip:
-pip install -r requirements.txt
 
+    pip install -r requirements.txt
 
-Limitations
------------------
-
-I had a trouble to generate facebook key so I don't implemented
-authentication based on it.
